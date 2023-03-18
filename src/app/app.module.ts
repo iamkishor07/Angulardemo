@@ -6,17 +6,21 @@ import { AppComponent } from './app.component';
 import { StringinterpolationComponent } from './stringinterpolation/stringinterpolation.component';
 import { PropertybindingComponent } from './propertybinding/propertybinding.component';
 import { EventbindingComponent } from './eventbinding/eventbinding.component';
+import { TwowaybindingComponent } from './twowaybinding/twowaybinding.component';
+import { FormsModule } from '@angular/forms'; 
 
 @NgModule({
   declarations: [
     AppComponent,
     StringinterpolationComponent,
     PropertybindingComponent,
-    EventbindingComponent
+    EventbindingComponent,
+    TwowaybindingComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
