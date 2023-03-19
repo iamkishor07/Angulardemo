@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <label>Add me</label><br>
+            <input type="text" class="form-control" [(ngModel)]="inputmessage">
+            <!-- <p>{{inputmessage}}</p> -->
+<button class="btn btn-primary" [disabled]="inputmessage===''" (click)="onAddedme()">ADD ME!!</button>
+<p *ngIf="isclick">You successfully added with {{inputmessage}}</p> 
+<!-- This is ng if condition -->
+<p [ngStyle]="{backgroundColor: getcolor()}" [ngClass]="{online:addstats==='online'}">
+    <!-- we add ngClass to dynamically add the css styles -->
+    Add me of ID: {{addid}} of status {{getaddstats()}}</p>
+
+        </div>
+    </div>
+</div>
+
