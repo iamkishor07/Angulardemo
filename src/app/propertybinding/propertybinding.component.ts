@@ -6,6 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./propertybinding.component.css']
 })
 export class PropertybindingComponent {
-  inputvalue:string="Hello";
-
+  addId:number=10;
+  addstatus:string="";
+  constructor(){
+    this.addstatus=Math.random()>0.5?"Your name":"Your surname";
+  }
+  getaddstatus(){
+    return this.addstatus;
+  }
 }
