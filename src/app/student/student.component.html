@@ -1,62 +1,54 @@
-<!-- <table class="table">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">NAME</th>
-        <th scope="col">AGE</th>
-        <th scope="col">COLLEGE</th>
-      </tr>
-    </thead>
-      <tbody *ngFor="let stu of students">
-        <tr>
-          <th scope="row">{{stu.id}}</th>
-          <td >{{stu.name}}</td>
-          <td>{{stu.age}}</td>
-          <td>{{stu.college}}</td>
-        </tr>
-      </tbody>
-    </table> -->
-    <!DOCTYPE html>
-    <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-    <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-    <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-    <!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-    <html>
-        <head>
-            <meta charset="utf-8">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <title></title>
-            <meta name="description" content="">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        </head>
-        <body>
-        <div class="container">
-            <div class="row-xs-12">
-                <div class="col-md-12">
-                    <!-- <button type="button" class="btn btn-primary">Add Student</button><br><br> -->
-            <p-table [value]="students" styleClass="p-datatable-gridlines" [paginator]="true"  [rows]="5"  [tableStyle]="{ 'min-width': '5rem' }">
-                <ng-template pTemplate="caption"> Student Details </ng-template>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+
+<div class="col-md-8 offset-2" >
+
+<div class="container">
+    <div class="row-xs-12">
+        <div class="p-card mt-5" style="{padding: 20px;}">
+            <p-table [value]="students" styleClass="p-datatable-gridlines" [paginator]="true" [rows]="6"
+                [tableStyle]="{ 'min-width': '5rem' }">
+                <ng-template pTemplate="caption" style="align-items: center;"> Student Details </ng-template>
                 <ng-template pTemplate="header">
-                <tr>
-                    <th pSortableColumn="ID">ID<p-sortIcon field="code"></p-sortIcon></th>
-                    <th pSortableColumn="Name" >Name<p-sortIcon field="code"></p-sortIcon></th>
-                    <th>AGE</th>
-                    <th>COLLEGE</th>
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-students>
-                <tr>
-                    <td>{{ students.id }}</td>
-                    <td>{{ students.name }}</td>
-                    <td>{{ students.age }}</td>
-                    <td>{{ students.college }}</td>
-                </tr>
-            </ng-template>
-        </p-table>
+                    <tr>
+                        <!-- <th pSortableColumn="ID">ID<p-sortIcon field="code"></p-sortIcon></th> -->
+                        <th pSortableColumn="Name">Name<p-sortIcon field="code"></p-sortIcon></th>
+                        <th>AGE</th>
+                        <th>GENDER</th>
+                        <th>COLLEGE</th>
+                        <th>Update</th>
+                        <th>Delete</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-students>
+                    <div *ngIf="students.length==0">
+                        <h4>No Data available</h4>
+                    </div>
+                    <tr *ngIf="students.length!=0">
+                        <td>{{ students.name }}</td>
+                        <td>{{ students.age }}</td>
+                        <td>{{ students.gender }}</td>
+                        <td>{{ students.college }}</td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+                            (click)="edit(students)">Update </button></td>
+                        <td><button type="button" class="btn btn-danger" (click)="deleteStudent(students.id)">delete
+                        </button></td>
+
+                    </tr>
+                  
+                <!-- </div> -->
+                </ng-template>
+            </p-table>
         </div>
-        </div>
-        </div>
-        </body>
-    </html>
-    
+    </div>
+</div>
+</div>
+
+
+
+<!-- <jw-modal id="custom-modal-1">
+  <h1>A Custom Modal Window!</h1>
+  <p>Home page text: <input type="text" [(ngModel)]="bodyText" /></p>
+  <button (click)="closeModal('custom-modal-1');">Close</button>
+</jw-modal> -->

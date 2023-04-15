@@ -14,4 +14,21 @@ export class StudentService {
    getAllStudents():Observable<student[]>{
     return this.http.get<student[]>(this.API+"/fetchAll");
    }
+   getstudent( data:number):Observable<student>{
+    return this.http.get<student>(this.API+"/getStudent/"+data);
+   }
+   addstudent(studentdata:any){
+    return this.http.post(this.API+"/signup",studentdata);
+   }
+
+   delstudent(student:any){
+    return this.http.delete(this.API+"/deleteStudent/"+student);
+   }
+
+   updatestudent(student:any){
+    return this.http.put(this.API+"/updateStudent/"+student.id,student);
+   }
+
+
+   
 }

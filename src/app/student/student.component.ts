@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { student } from '../shared/students.mode';
 import { StudentService } from '../student.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-student',
@@ -7,13 +9,48 @@ import { StudentService } from '../student.service';
   styleUrls: ['./student.component.css']
 })
 export class StudentComponent implements OnInit {
-  public students:any=[]
-  constructor(private studentservice:StudentService){
-    
+  students: any=[];   
+  studentToUpdate = {
+    id:"",
+    name:"",
+    age:"",
+    gender:"",
+    college:""
   }
-  ngOnInit() {
-   this.studentservice.getAllStudents()
-   .subscribe(data=> this.students = data);
+  constructor(private studentservice:StudentService,private router:Router,private activaterouter:ActivatedRoute){}
+  // edit(studuent: any){
+  //   this.studentToUpdate = studuent;
+  // }
+  edit( studuent:any){
+    this.studentToUpdate = studuent;
+    this.router.navigate(['Updatestudent',studuent.id]);
   }
+  // addedagain(){
+  //   this.isadded
+  // }
 
+  ngOnInit() {
+  this.fetch();
+  }
+  deleteStudent(student: any) {
+    this.studentservice.delstudent(student).subscribe(
+      (resp) => {
+        console.log(resp);
+        this.fetch();
+      },
+    )
+   
+}
+updateStudent(){
+  this.studentservice.updatestudent(student).subscribe(
+    (resp) => {
+      this.students=resp;
+      // console.log(resp);
+      this.fetch();
+    },
+  )
+}
+fetch(){
+   this.students= this.activaterouter.snapshot.data['data'];
+}
 }
