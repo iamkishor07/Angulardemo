@@ -10,24 +10,30 @@
     integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>  
-  <div class="col-md-8 offset-2" >
+  <div class="col-md-10 offset-2" >
 
   <div class="container-fluid">
     <div class="text-center">        
       <a class="navabar.text-center"  routerLink="StudentsDetails"><h2>Student Rest Api</h2></a>
+      {{status}}
+ 
     </div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="navbar-header">
-        <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
+        <div class="collapse navbar-collapse " >
           <div class="nav flex-row nav-pills">
             <li><a class="nav-item nav-link "  routerLinkActive="active" routerLink="StudentsDetails" routerLinkActive="active">All Students</a> </li>
             <li> <a class="nav-item nav-link  " routerLinkActive="active" routerLink="addstudent">Add student</a> </li>
               <li><a class="nav-item nav-link " routerLinkActive="active" routerLink="getstudent" >Fetch  student</a></li>
                 <li><a class="nav-item nav-link "  routerLinkActive="active" routerLink="Updatestudent" >Update student</a></li>
                   <li><a class="nav-item nav-link "routerLinkActive="active"  routerLink="Deletestudent"  >Delete student</a></li>
+                  <li><a class="nav-item nav-link" routerLinkActive="active">  <button class="btn btn-default" [ngClass]="{toggleColorbutton:toggleColor==true}" (click)="OnLogin()">Login</button></a> </li>
+                  <li class="nav-item nav-link" routerLinkActive="active">  <button class="btn btn-default" [ngClass]="{toggleColorbutton:toggleColor==false}" (click)="OnLogout()">logout</button></li>
+   
           </div>
       </div>
  
+
       </div>
     </nav>
   </div>

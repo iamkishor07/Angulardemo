@@ -23,7 +23,7 @@ export class StudentComponent implements OnInit {
   // }
   edit( studuent:any){
     this.studentToUpdate = studuent;
-    this.router.navigate(['Updatestudent',studuent.id]);
+    this.router.navigate(['/Updatestudent',studuent.id],{relativeTo:this.activaterouter});
   }
   // addedagain(){
   //   this.isadded
@@ -33,13 +33,13 @@ export class StudentComponent implements OnInit {
   this.fetch();
   }
   deleteStudent(student: any) {
+    // throw alert("deleted the details "+student);   
     this.studentservice.delstudent(student).subscribe(
       (resp) => {
-        console.log(resp);
         this.fetch();
       },
     )
-   
+  
 }
 updateStudent(){
   this.studentservice.updatestudent(student).subscribe(

@@ -24,7 +24,11 @@ export class UpdatestudentComponent implements OnInit{
   
   constructor(private fb:FormBuilder,private route:ActivatedRoute,private http:StudentService,private router:Router){}
   ngOnInit() {
-    this.stuid=this.route.snapshot.params['id'];
+    if(this.route.snapshot.params['id']!=undefined)
+     this.doexecute();
+      }
+      doexecute(){
+        this.stuid=this.route.snapshot.params['id'];
         this.http.getstudent(this.stuid)
         .subscribe((data:any)=>{  
           console.log("Form data",data);
@@ -36,7 +40,6 @@ export class UpdatestudentComponent implements OnInit{
                  college:data.college
              })
           })
-
       }
       fetch(){
         this.http.getAllStudents()

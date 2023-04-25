@@ -1,4 +1,5 @@
 export class student {
+    static id: any;
     constructor(
         id:number,
         name:string,
