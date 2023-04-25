@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Resolve, RouterStateSnapshot, UrlTree } from '@angular/router';
+import {  Resolve } from '@angular/router';
 import { Observable } from 'rxjs';
 import { student } from '../shared/students.mode';
 import { StudentService } from '../student.service';
