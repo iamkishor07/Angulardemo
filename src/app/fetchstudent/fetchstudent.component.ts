@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 export class FetchstudentComponent  implements OnInit{
 constructor(private http:StudentService,private fb:FormBuilder,private router:Router){}
  FetchForm!: FormGroup;
+ error=null;
+ isFetching=false;
 //  FormGroup = new FormGroup({
 //   id: new FormControl(),
 //   name:new FormControl(),
@@ -23,19 +25,22 @@ students: any=[];
 isopen:boolean= false;
 ngOnInit(){
   this.FetchForm = this.fb.group({ //This is using FormBuilder 
-    id:['1154'] 
+    id:['1156'] 
   });
   
 }
 onfetch(){
+  this.isFetching=true;
+  this.error=null;
   this.http.getstudent(this.FetchForm.value.id).
   subscribe(
     (data:student) =>{
       this.students=data;
-      this.isopen=!this.isopen;
+      this.isopen=true;
+      this.isFetching=false;
     },
-    error =>{
-      alert("The Student With Id is Not Found");
+    (error) =>{
+      this.error=error.message;
     }
   );
     // console.log("Form data",this.students);

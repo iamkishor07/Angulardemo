@@ -13,7 +13,9 @@ const routes: Routes = [
   {path:'',redirectTo:'/StudentsDetails',pathMatch:'full'},
   {path: 'addstudent', title: 'Add Student',component:AddStudentComponent ,canActivate:[AdminauthGuardGuard]},
   {path:'getstudent' , title: 'Get Student',component:FetchstudentComponent},
-  {path:'StudentsDetails', title: 'Student Details',component: StudentComponent ,resolve:{data:AllstudentdetailsGuard}},
+  // {path:'StudentsDetails', title: 'Student Details',component: StudentComponent ,resolve:{data:AllstudentdetailsGuard}},
+  {path:'StudentsDetails', title: 'Student Details',component: StudentComponent },
+
   {path:'Deletestudent', title: 'Delete Student',component: UpdatestudentComponent},
   {path:'Updatestudent', title: 'Update Student',component: UpdatestudentComponent},
   {path:'getstudent/:id' , title: 'Get Student Id',component:FetchstudentComponent},

@@ -6,6 +6,14 @@
 <div class="container">
     <div class="row-xs-12">
         <div class="p-card mt-5" style="{padding: 20px;}">
+            <div class="alert alert-danger" *ngIf="error">
+                <h1>An Error Occured</h1>
+                {{error}}
+            </div>
+            <div *ngIf="isFetching && !error">
+             <h2 >Loading.....</h2>
+            </div>
+            <div *ngIf="!error && !isFetching">
             <p-table [value]="students" styleClass="p-datatable-gridlines" [paginator]="true" [rows]="6"
                 [tableStyle]="{ 'min-width': '5rem' }">
                 <ng-template pTemplate="caption" style="align-items: center;"> Student Details </ng-template>
@@ -20,10 +28,8 @@
                         <th>Delete</th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-students>
-                    <div *ngIf="students.length==0">
-                        <h4>No Data available</h4>
-                    </div>
+                <!-- <div *ngIf="students.length==0"> -->
+                <ng-template pTemplate="body" let-students>            
                     <tr *ngIf="students.length!=0">
                         <td>{{ students.name }}</td>
                         <td>{{ students.age }}</td>
@@ -38,7 +44,10 @@
                   
                 <!-- </div> -->
                 </ng-template>
+            <!-- </div> -->
+
             </p-table>
+        </div>
         </div>
     </div>
 </div>

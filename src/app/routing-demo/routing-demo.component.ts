@@ -12,6 +12,7 @@ export class RoutingDemoComponent {
   toggleColor:boolean=true;
   status:string="Logged In!!";
   OnLogout(){
+    alert("Are you sure Logout!!");
     this.status="Logged Out!!";
     this.toggleColor=!this.toggleColor;
     this.route.navigate(['/StudentsDetails'])
