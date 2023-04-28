@@ -21,8 +21,10 @@ export class StudentService {
     return this.http.post(this.API+"/signup",studentdata);
    }
 
-   delstudent(student:any){
-    return this.http.delete(this.API+"/deleteStudent/"+student);
+   delstudent(student:number){
+    return this.http.delete(this.API+"/deleteStudent/"+student,{responseType:'text'});
+    //By default in angular the expected response type is json
+    //so we changed the response type from json to text as the delete endpoint returns the string with message
    }
 
    updatestudent(student:any){
