@@ -9,7 +9,9 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./student.component.css']
 })
 export class StudentComponent implements OnInit {
-  students: any=[];   
+  students: student[]=[];   
+  isFetching=false;
+  error=null;
   studentToUpdate = {
     id:"",
     name:"",
@@ -21,36 +23,65 @@ export class StudentComponent implements OnInit {
   // edit(studuent: any){
   //   this.studentToUpdate = studuent;
   // }
-  edit( studuent:any){
-    this.studentToUpdate = studuent;
-    this.router.navigate(['/Updatestudent',studuent.id],{relativeTo:this.activaterouter});
+  edit( student:any){
+    this.studentToUpdate = student;
+    this.router.navigate(['/Updatestudent',student.id],{relativeTo:this.activaterouter});
   }
   // addedagain(){
   //   this.isadded
   // }
 
   ngOnInit() {
-  this.fetch();
+    this.isFetching=true;
+   this.studentservice.getAllStudents().subscribe(
+    (data)=>{
+      this.students=data;
+      this.isFetching=false;
+    },
+    (error) =>{
+      this.error=error.message;
+      console.log("Error occured"+error.message);
+    }
+  )
   }
-  deleteStudent(student: any) {
+  deleteStudent(student: number) {
     // throw alert("deleted the details "+student);   
     this.studentservice.delstudent(student).subscribe(
       (resp) => {
-        this.fetch();
+        this.reload();
       },
+   
     )
   
 }
 updateStudent(){
   this.studentservice.updatestudent(student).subscribe(
-    (resp) => {
-      this.students=resp;
+    (resp:student) => {
+      // this.students=resp;
       // console.log(resp);
-      this.fetch();
+      this.reload();
     },
   )
 }
+
+reload(){
+  this.studentservice.getAllStudents().subscribe(
+    (data)=>{
+      this.students=data;
+    },
+    (error) =>{
+      this.error=error.message;
+      console.log("Error occured"+error.message);
+    }
+  )
+  // console.log("the length is"+this.students.length);
+}
 fetch(){
-   this.students= this.activaterouter.snapshot.data['data'];
+  this.isFetching=false;
+  this.reload();
+  this.isFetching=true;
+
+//  this.students= this.activaterouter.snapshot.data['data'];
+//  console.log("the length is"+this.students.length);
 }
 }

@@ -26,8 +26,20 @@
             </div>
         </div>
 
+        <div class="col-md-12">
+        <div class="alert alert-danger" style="{padding: 20px;}" *ngIf="error">
+            <h2>
+                Error Occured!!
+            </h2>
+            <small>{{error}}</small>
+        </div>
+    </div>
 
-        <div class="container" *ngIf="isopen">
+    <div *ngIf="isFetching && !error">
+        <h2>Loading!!!</h2>
+    </div>
+
+        <div class="container" *ngIf="isopen && !error && !isFetching">
             <div class="row-xs-12">
                 <div class="p-card mt-5" style="{padding: 20px;}">
                     <p-table [tableStyle]="{ 'min-width': '20rem' }">

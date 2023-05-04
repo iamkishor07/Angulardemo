@@ -15,20 +15,34 @@
   <div class="container-fluid">
     <div class="text-center">        
       <a class="navabar.text-center"  routerLink="StudentsDetails"><h2>Student Rest Api</h2></a>
-      {{status}}
  
     </div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="navbar-header">
         <div class="collapse navbar-collapse " >
           <div class="nav flex-row nav-pills">
+            <li *ngIf="!this.authenticationService.isUserLogedIn()" > <a class="nav-item nav-link "  routerLinkActive="active" routerLink="Login">Login/signUp</a> </li>
             <li><a class="nav-item nav-link "  routerLinkActive="active" routerLink="StudentsDetails" routerLinkActive="active">All Students</a> </li>
             <li> <a class="nav-item nav-link  " routerLinkActive="active" routerLink="addstudent">Add student</a> </li>
               <li><a class="nav-item nav-link " routerLinkActive="active" routerLink="getstudent" >Fetch  student</a></li>
                 <li><a class="nav-item nav-link "  routerLinkActive="active" routerLink="Updatestudent" >Update student</a></li>
                   <li><a class="nav-item nav-link "routerLinkActive="active"  routerLink="Deletestudent"  >Delete student</a></li>
-                  <li><a class="nav-item nav-link" routerLinkActive="active">  <button class="btn btn-default" [ngClass]="{toggleColorbutton:toggleColor==true}" (click)="OnLogin()">Login</button></a> </li>
-                  <li class="nav-item nav-link" routerLinkActive="active">  <button class="btn btn-default" [ngClass]="{toggleColorbutton:toggleColor==false}" (click)="OnLogout()">logout</button></li>
+                  <!-- <li><a class="nav-item nav-link" routerLinkActive="active">  <button class="btn btn-default" [ngClass]="{toggleColorbutton:toggleColor==true}" (click)="OnLogin()">Login</button></a> </li> -->
+                  <!-- <li class="nav-item nav-link" routerLinkActive="active" routerLink="logout"> (click)="OnLogout()">logout</li> -->
+                  <li *ngIf="this.authenticationService.isUserLogedIn()" ><a class="nav-item nav-link "routerLinkActive="active"  routerLink="logout">Logout</a></li>
+                  <!-- <li class="nav-item">
+                    <div *ngIf="isUserLoggedIn">
+                          <a class="nav-link"  routerLinkActive="active" routerLink="logout">Logout</a>
+                    </div>
+                    <div *ngIf="!isUserLoggedIn">
+                      <a class="nav-link"   routerLinkActive="active" routerLink="Login">Login</a>
+                    </div> -->
+  
+                    <!-- <ng-template #isLogOut>
+                                <a class="nav-link" routerLink="Login">Login</a>
+                    </ng-template> -->
+        
+
    
           </div>
       </div>
