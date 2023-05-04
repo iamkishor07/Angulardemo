@@ -20,6 +20,9 @@ import { AllstudentdetailsGuard } from './services/allstudentdetails.guard';
 import { StudentService } from './student.service';
 import { ServicesInterceptor } from './ExampleInterceptor/services.interceptor';
 import { LoggingInterceptor } from './ExampleInterceptor/logging.interceptor';
+import { LoginpageComponent } from './loginpage/loginpage.component';
+import { AuthenticationService } from './services/authentication.service';
+import { LogoutComponent } from './logout/logout.component';
 
 
 //The order of the Interceptor is Important in Here that's how the execution Happens 
@@ -47,7 +50,9 @@ const HttpInterceptor = [
     PageNotFoundComponent,
     FetchstudentComponent,
     AddStudentComponent,
-    UpdatestudentComponent
+    UpdatestudentComponent,
+    LoginpageComponent,
+    LogoutComponent
    ],
   imports: [
     BrowserModule,
@@ -61,6 +66,7 @@ const HttpInterceptor = [
   providers: [
     AllstudentdetailsGuard,
     StudentService,
+    AuthenticationService,
     HttpInterceptor],
   bootstrap: [AppComponent]
 })
